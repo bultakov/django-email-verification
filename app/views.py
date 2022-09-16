@@ -25,11 +25,7 @@ def code_confirm(request):
         try:
             user = UserConfirm.objects.get(token=token, code=code.strip(), is_active=False)
         except UserConfirm.DoesNotExist:
-            user = None
-        if not user:
             return render(request=request, template_name='code.html', context={"token": token, 'message': "Error"})
         user.is_active = True
         user.save()
-        response = render(request=request, template_name='code.html', context={"token": token, "message": "Success"})
-        response.delete_cookie('token')
-        return response
+        return render(request=request, template_name='code.html', context={"token": token, "message": "Success"})
