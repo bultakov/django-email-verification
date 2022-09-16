@@ -11,10 +11,7 @@ def home(request):
         email: str = request.POST.get('email')
         code: str = send_code(email='bii23.uz@gmail.com')
         token = uuid4()
-        user = UserConfirm()
-        user.email = email
-        user.code = code
-        user.token = token
+        user = UserConfirm(email=email, code=code, token=token)
         user.save()
         request.session.setdefault(key='email', value=email)
         return render(request=request, template_name='code.html', context={"token": token})
