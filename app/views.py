@@ -13,7 +13,6 @@ def home(request):
         token = uuid4()
         user = UserConfirm(email=email, code=code, token=token)
         user.save()
-        request.session.setdefault(key='email', value=email)
         return render(request=request, template_name='code.html', context={"token": token})
     return render(request=request, template_name='index.html', context={})
 
