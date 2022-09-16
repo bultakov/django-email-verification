@@ -1,6 +1,6 @@
 from uuid import uuid4
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 
 from app.models import UserConfirm
 from app.utils import send_code
