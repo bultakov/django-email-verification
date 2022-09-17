@@ -9,7 +9,7 @@ from app.utils import send_code
 def home(request):
     if request.POST:
         email: str = request.POST.get('email')
-        code: str = send_code(email='bii23.uz@gmail.com')
+        code: str = send_code(email=email)
         token = uuid4()
         user = UserConfirm(email=email, code=code, token=token)
         user.save()
